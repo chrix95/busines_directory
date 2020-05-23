@@ -13,6 +13,9 @@ export default {
   create_business(credentials) {
     return Api().post("business", credentials, config);
   },
+  upload_image(id, credentials) {
+    return Api().post(`business/upload/${id}`, credentials, config);
+  },
   update_business(id, credentials) {
     return Api().post(`business/${id}`, credentials, config);
   },

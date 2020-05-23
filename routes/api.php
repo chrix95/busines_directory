@@ -33,6 +33,7 @@ Route::group(['prefix' => 'v1'], function() {
         Route::post('/{id}', 'BusinessController@update');
         Route::get('/status/{id}/{value}', 'BusinessController@changeStatus');
         Route::get('/rating/{id}/{value}', 'BusinessController@updateRating');
+        Route::post('/upload/{id}', 'BusinessController@uploadImage');
         Route::delete('/{id}', 'BusinessController@destroy');
     });
 });

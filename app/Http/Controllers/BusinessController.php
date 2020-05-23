@@ -94,6 +94,38 @@ class BusinessController extends Controller
         return $this->utility->response($status, $response);
     }
 
+    public function uploadImage (Request $request, $id) {
+        $business = Business::find($id);
+        if (!$business) {
+            $status = '06';
+            $response = [];
+        } else {
+            $data = array(
+                'image' =>  $request->image
+            );
+            $validator = \Validator::make($data, [
+                'image'     =>  'required|file|image|mimes:jpeg,jpg,png|dimensions:width=320,height=320'
+            ]);
+            if($validator->fails()) {
+                $status = '05';
+                $response = $validator->errors();
+            } else {
+                if ($request->hasFile('image')) {
+                    $fileName = time().'.'.$request->image->getClientOriginalExtension();
+                    $request->image->move(public_path('upload'), $fileName);
+                    $data['image'] = 'upload/' . $fileName;
+                    $business->images()->create($data);
+                    $status = '00';
+                    $response = [];
+                } else {
+                    $status = '01';
+                    $response = [];
+                }
+            }
+        }
+        return $this->utility->response($status, $response);
+    }
+
     public function update (Request $request, $id) {
         $business = Business::find($id);
         if (!$business) {
