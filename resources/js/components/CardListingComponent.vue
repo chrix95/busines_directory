@@ -149,10 +149,8 @@ export default {
                 BusinessService.upload_image(this.listing.id, formData)
                     .then((result) => {
                         this.loading = false
-                        console.log(result)
                         window.location.reload()
                     }).catch((err) => {
-                        console.log(err.response)
                         this.loading = false
                         alert(err.response.data.data.image ? err.response.data.data.image : err.response.data.message)
                     })

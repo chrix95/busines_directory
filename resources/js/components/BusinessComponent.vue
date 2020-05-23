@@ -277,7 +277,6 @@
                 this.showCreate = false
                 BusinessService.get_one_business(id)
                     .then((result) => {
-                        console.log(result)
                         this.fields.name = result.data.data.name
                         this.fields.email = result.data.data.email
                         this.fields.phone = result.data.data.phone
@@ -290,7 +289,6 @@
                         });
                         that.showEdit = true
                     }).catch((err) => {
-                        console.log(err.response)
                         that.showEdit = false
                         alert('Error fetching business')
                     })

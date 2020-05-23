@@ -2189,7 +2189,6 @@ __webpack_require__.r(__webpack_exports__);
       var that = this;
       this.showCreate = false;
       _services_BusinessService__WEBPACK_IMPORTED_MODULE_0__["default"].get_one_business(id).then(function (result) {
-        console.log(result);
         _this2.fields.name = result.data.data.name;
         _this2.fields.email = result.data.data.email;
         _this2.fields.phone = result.data.data.phone;
@@ -2202,7 +2201,6 @@ __webpack_require__.r(__webpack_exports__);
         });
         that.showEdit = true;
       })["catch"](function (err) {
-        console.log(err.response);
         that.showEdit = false;
         alert('Error fetching business');
       });
@@ -2520,10 +2518,8 @@ __webpack_require__.r(__webpack_exports__);
         formData.append('image', this.payload.image);
         _services_BusinessService__WEBPACK_IMPORTED_MODULE_0__["default"].upload_image(this.listing.id, formData).then(function (result) {
           _this.loading = false;
-          console.log(result);
           window.location.reload();
         })["catch"](function (err) {
-          console.log(err.response);
           _this.loading = false;
           alert(err.response.data.data.image ? err.response.data.data.image : err.response.data.message);
         });
