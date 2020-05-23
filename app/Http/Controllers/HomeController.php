@@ -29,13 +29,13 @@ class HomeController extends Controller
     }
 
     public function categoryindex () {
-        $category = Category::all();
+        $category = Category::orderBy('name', 'asc')->get();
         return view('pages.category', compact('category'));
     }
     
     public function businessindex () {
-        $business = Business::all();
-        $category = Category::all();
+        $business = Business::orderBy('name', 'asc')->get();
+        $category = Category::orderBy('name', 'asc')->get();
         return view('pages.business', compact('business', 'category'));
     }
 

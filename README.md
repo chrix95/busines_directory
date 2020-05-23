@@ -19,5 +19,9 @@ php artisan key:generate
 Username: engchris95@gmail.com
 Password: root1234
 ```
+Note: During development phase, to compile your assets and watch for changes, run:
+```
+npm run watch
+```
 ## Support
 For support towards this project, reach me on <a href="tel:2348183780409">+2348183780409</a> or <a href="mailto:engchris95@gmail.com">email</a>.
