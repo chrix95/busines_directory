@@ -176,6 +176,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Email</th>
+                        <th scope="col">Rating</th>
                         <th scope="col">Views</th>
                         <th scope="col">Status</th>
                         <th scope="col">Action</th>
@@ -187,6 +188,7 @@
                         <td>{{ cat.name }}</td>
                         <td>{{ cat.phone }}</td>
                         <td>{{ cat.email }}</td>
+                        <td>{{ cat.rating }}</td>
                         <td>{{ cat.views }}</td>
                         <td>{{ cat.status[0].toUpperCase() + cat.status.slice(1) }}</td>
                         <td class="row justify-content-center">
@@ -369,51 +371,30 @@
                                         } else {
                                             this.message = 'Select at least one category'
                                             this.error = true
-                                            setTimeout(() => {
-                                                this.error = false
-                                            }, 2500);
                                         }
                                     } else {
                                         this.message = 'Enter company description'
                                         this.error = true
-                                        setTimeout(() => {
-                                            this.error = false
-                                        }, 2500);
                                     }
                                 } else {
                                     this.message = 'Enter company address'
                                     this.error = true
-                                    setTimeout(() => {
-                                        this.error = false
-                                    }, 2500);
                                 }
                             }   else {
                                 this.message = 'Enter company website'
                                 this.error = true
-                                setTimeout(() => {
-                                    this.error = false
-                                }, 2500);
                             }
                         } else {
                             this.message = 'Enter company phone'
                             this.error = true
-                            setTimeout(() => {
-                                this.error = false
-                            }, 2500);
                         }
                     } else {
                         this.message = 'Enter company email'
                         this.error = true
-                        setTimeout(() => {
-                            this.error = false
-                        }, 2500);
                     }
                 } else {
                     this.message = 'Enter a company name'
                     this.error = true
-                    setTimeout(() => {
-                        this.error = false
-                    }, 2500);
                 }
             },
             validatePayload() {
@@ -429,58 +410,34 @@
                                             } else {
                                                 this.message = 'Select at least one category'
                                                 this.error = true
-                                                setTimeout(() => {
-                                                    this.error = false
-                                                }, 2500);
                                             }
                                         } else {
                                             this.message = 'Enter company description'
                                             this.error = true
-                                            setTimeout(() => {
-                                                this.error = false
-                                            }, 2500);
                                         }
                                     } else {
                                         this.message = 'Enter company address'
                                         this.error = true
-                                        setTimeout(() => {
-                                            this.error = false
-                                        }, 2500);
                                     }
                                 } else {
                                     this.message = 'Select a valid image'
                                     this.error = true
-                                    setTimeout(() => {
-                                        this.error = false
-                                    }, 2500);
                                 }
                             }   else {
                                 this.message = 'Enter company website'
                                 this.error = true
-                                setTimeout(() => {
-                                    this.error = false
-                                }, 2500);
                             }
                         } else {
                             this.message = 'Enter company phone'
                             this.error = true
-                            setTimeout(() => {
-                                this.error = false
-                            }, 2500);
                         }
                     } else {
                         this.message = 'Enter company email'
                         this.error = true
-                        setTimeout(() => {
-                            this.error = false
-                        }, 2500);
                     }
                 } else {
                     this.message = 'Enter a company name'
                     this.error = true
-                    setTimeout(() => {
-                        this.error = false
-                    }, 2500);
                 }
             }
         }

@@ -2126,6 +2126,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2272,8 +2274,6 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     validateFields: function validateFields() {
-      var _this6 = this;
-
       if (this.fields.name) {
         if (this.fields.email) {
           if (this.fields.phone) {
@@ -2285,56 +2285,33 @@ __webpack_require__.r(__webpack_exports__);
                   } else {
                     this.message = 'Select at least one category';
                     this.error = true;
-                    setTimeout(function () {
-                      _this6.error = false;
-                    }, 2500);
                   }
                 } else {
                   this.message = 'Enter company description';
                   this.error = true;
-                  setTimeout(function () {
-                    _this6.error = false;
-                  }, 2500);
                 }
               } else {
                 this.message = 'Enter company address';
                 this.error = true;
-                setTimeout(function () {
-                  _this6.error = false;
-                }, 2500);
               }
             } else {
               this.message = 'Enter company website';
               this.error = true;
-              setTimeout(function () {
-                _this6.error = false;
-              }, 2500);
             }
           } else {
             this.message = 'Enter company phone';
             this.error = true;
-            setTimeout(function () {
-              _this6.error = false;
-            }, 2500);
           }
         } else {
           this.message = 'Enter company email';
           this.error = true;
-          setTimeout(function () {
-            _this6.error = false;
-          }, 2500);
         }
       } else {
         this.message = 'Enter a company name';
         this.error = true;
-        setTimeout(function () {
-          _this6.error = false;
-        }, 2500);
       }
     },
     validatePayload: function validatePayload() {
-      var _this7 = this;
-
       if (this.payload.name) {
         if (this.payload.email) {
           if (this.payload.phone) {
@@ -2347,58 +2324,34 @@ __webpack_require__.r(__webpack_exports__);
                     } else {
                       this.message = 'Select at least one category';
                       this.error = true;
-                      setTimeout(function () {
-                        _this7.error = false;
-                      }, 2500);
                     }
                   } else {
                     this.message = 'Enter company description';
                     this.error = true;
-                    setTimeout(function () {
-                      _this7.error = false;
-                    }, 2500);
                   }
                 } else {
                   this.message = 'Enter company address';
                   this.error = true;
-                  setTimeout(function () {
-                    _this7.error = false;
-                  }, 2500);
                 }
               } else {
                 this.message = 'Select a valid image';
                 this.error = true;
-                setTimeout(function () {
-                  _this7.error = false;
-                }, 2500);
               }
             } else {
               this.message = 'Enter company website';
               this.error = true;
-              setTimeout(function () {
-                _this7.error = false;
-              }, 2500);
             }
           } else {
             this.message = 'Enter company phone';
             this.error = true;
-            setTimeout(function () {
-              _this7.error = false;
-            }, 2500);
           }
         } else {
           this.message = 'Enter company email';
           this.error = true;
-          setTimeout(function () {
-            _this7.error = false;
-          }, 2500);
         }
       } else {
         this.message = 'Enter a company name';
         this.error = true;
-        setTimeout(function () {
-          _this7.error = false;
-        }, 2500);
       }
     }
   }
@@ -3026,7 +2979,6 @@ __webpack_require__.r(__webpack_exports__);
         _this.rateBtn = false;
       })["catch"](function (err) {
         _this.loading = false;
-        console.log(err.response);
         alert('Error updating rating');
       });
     }
@@ -40241,6 +40193,8 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(cat.email))]),
               _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(cat.rating))]),
+              _vm._v(" "),
               _c("td", [_vm._v(_vm._s(cat.views))]),
               _vm._v(" "),
               _c("td", [
@@ -40360,6 +40314,8 @@ var staticRenderFns = [
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Phone")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Rating")]),
         _vm._v(" "),
         _c("th", { attrs: { scope: "col" } }, [_vm._v("Views")]),
         _vm._v(" "),

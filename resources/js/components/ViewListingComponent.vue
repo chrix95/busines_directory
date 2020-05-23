@@ -121,7 +121,6 @@
                         this.rateBtn = false
                     }).catch((err) => {
                         this.loading = false
-                        console.log(err.response)
                         alert('Error updating rating')
                     })
             }
