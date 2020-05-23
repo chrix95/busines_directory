@@ -21,7 +21,8 @@
             </div>
             <div class="form-group">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary">Update</button>
+                    <button type="submit" class="btn btn-primary" v-if="!loading">Update</button>
+                    <button type="button" class="btn btn-primary" disabled v-else>Loading...</button>
                 </div>
             </div>
         </form>
@@ -38,7 +39,8 @@
             </div>
             <div class="form-group">
                 <div class="col">
-                    <button type="submit" class="btn btn-primary">Create</button>
+                    <button type="submit" class="btn btn-primary" v-if="!loading">Create</button>
+                    <button type="button" class="btn btn-primary" disabled v-else>Loading...</button>
                 </div>
             </div>
         </form>
@@ -84,7 +86,8 @@
                 showEdit: false,
                 showCreate: false,
                 error: false,
-                editId: null
+                editId: null,
+                loading: false
             }
         },
         mounted() {},
@@ -103,10 +106,12 @@
                     })
             },
             updateCategory () {
+                this.loading = true
                 CategoryService.update_category(this.editId, this.fields)
                     .then((result) => {
                         window.location.reload()
                     }).catch((err) => {
+                        this.loading = false
                         this.message = err.response.data.message ? err.response.data.message : err.response.data.error
                         this.error = true
                         setTimeout(() => {
@@ -115,12 +120,13 @@
                     })
             },
             createCategory () {
-                console.log(this.payload)
                 if(this.validatePayload()) {
+                    this.loading = true
                     CategoryService.create_category(this.payload)
                         .then((result) => {
                             window.location.reload()
                         }).catch((err) => {
+                            this.loading = false
                             this.message = err.response.data.data['name'][0]
                             this.error = true
                             setTimeout(() => {

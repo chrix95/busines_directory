@@ -69,9 +69,10 @@
                                 <label class="ratingControl-stars ratingControl-stars--1" for="rating-1">1</label>
                                 <input v-model="rate" type="radio" id="rating-05" name="rating" value="0.5">
                                 <label class="ratingControl-stars ratingControl-stars--05 ratingControl-stars--half" for="rating-05">05</label>
-                                <button type="button" class="btn btn-outline-success btn-md rateBtn" @click="updateRating()" v-if="rateBtn">
+                                <button type="button" class="btn btn-outline-success btn-md rateBtn" @click="updateRating()" v-if="!loading">
                                     Rate
                                 </button>
+                                <button type="button" class="btn btn-primary" disabled v-else>Rating...</button>
                             </div>
                         </div>
                         <br><br>
@@ -101,7 +102,8 @@
             return {
                 listing: {},
                 rate: null,
-                rateBtn: true
+                rateBtn: true,
+                loading: false
             }
         },
         mounted() {
@@ -111,22 +113,14 @@
             setImagePath (image) {
                 return '/' + image
             },
-            viewListing (id) {
-                ListingService.view_a_listing(id)
-                    .then((result) => {
-                        console.log(result)
-                        window.location.href = `/listing/view/${id}`
-                    }).catch((err) => {
-                        console.log(err.response)
-                        alert('Error viewing listing')
-                    })
-            },
             updateRating () {
+                this.loading = true
                 ListingService.update_rating(this.listing.id, this.rate)
                     .then((result) => {
                         this.listing.rating = result.data.data.rating
                         this.rateBtn = false
                     }).catch((err) => {
+                        this.loading = false
                         console.log(err.response)
                         alert('Error updating rating')
                     })

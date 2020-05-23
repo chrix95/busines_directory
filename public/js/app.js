@@ -2485,6 +2485,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2501,7 +2503,8 @@ __webpack_require__.r(__webpack_exports__);
       showEdit: false,
       showCreate: false,
       error: false,
-      editId: null
+      editId: null,
+      loading: false
     };
   },
   mounted: function mounted() {},
@@ -2523,9 +2526,11 @@ __webpack_require__.r(__webpack_exports__);
     updateCategory: function updateCategory() {
       var _this2 = this;
 
+      this.loading = true;
       _services_CategoryService__WEBPACK_IMPORTED_MODULE_0__["default"].update_category(this.editId, this.fields).then(function (result) {
         window.location.reload();
       })["catch"](function (err) {
+        _this2.loading = false;
         _this2.message = err.response.data.message ? err.response.data.message : err.response.data.error;
         _this2.error = true;
         setTimeout(function () {
@@ -2536,12 +2541,12 @@ __webpack_require__.r(__webpack_exports__);
     createCategory: function createCategory() {
       var _this3 = this;
 
-      console.log(this.payload);
-
       if (this.validatePayload()) {
+        this.loading = true;
         _services_CategoryService__WEBPACK_IMPORTED_MODULE_0__["default"].create_category(this.payload).then(function (result) {
           window.location.reload();
         })["catch"](function (err) {
+          _this3.loading = false;
           _this3.message = err.response.data.data['name'][0];
           _this3.error = true;
           setTimeout(function () {
@@ -2806,6 +2811,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2818,7 +2824,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       listing: {},
       rate: null,
-      rateBtn: true
+      rateBtn: true,
+      loading: false
     };
   },
   mounted: function mounted() {
@@ -2828,22 +2835,15 @@ __webpack_require__.r(__webpack_exports__);
     setImagePath: function setImagePath(image) {
       return '/' + image;
     },
-    viewListing: function viewListing(id) {
-      _services_ListingService__WEBPACK_IMPORTED_MODULE_0__["default"].view_a_listing(id).then(function (result) {
-        console.log(result);
-        window.location.href = "/listing/view/".concat(id);
-      })["catch"](function (err) {
-        console.log(err.response);
-        alert('Error viewing listing');
-      });
-    },
     updateRating: function updateRating() {
       var _this = this;
 
+      this.loading = true;
       _services_ListingService__WEBPACK_IMPORTED_MODULE_0__["default"].update_rating(this.listing.id, this.rate).then(function (result) {
         _this.listing.rating = result.data.data.rating;
         _this.rateBtn = false;
       })["catch"](function (err) {
+        _this.loading = false;
         console.log(err.response);
         alert('Error updating rating');
       });
@@ -40256,7 +40256,27 @@ var render = function() {
               })
             ]),
             _vm._v(" "),
-            _vm._m(0)
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "col" }, [
+                !_vm.loading
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Update")]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button", disabled: "" }
+                      },
+                      [_vm._v("Loading...")]
+                    )
+              ])
+            ])
           ]
         )
       : _vm._e(),
@@ -40318,7 +40338,27 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _vm._m(1)
+            _c("div", { staticClass: "form-group" }, [
+              _c("div", { staticClass: "col" }, [
+                !_vm.loading
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "submit" }
+                      },
+                      [_vm._v("Create")]
+                    )
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button", disabled: "" }
+                      },
+                      [_vm._v("Loading...")]
+                    )
+              ])
+            ])
           ]
         )
       : _vm._e(),
@@ -40349,7 +40389,7 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("table", { staticClass: "table" }, [
-        _vm._m(2),
+        _vm._m(0),
         _vm._v(" "),
         _c(
           "tbody",
@@ -40399,34 +40439,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-          [_vm._v("Update")]
-        )
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("div", { staticClass: "col" }, [
-        _c(
-          "button",
-          { staticClass: "btn btn-primary", attrs: { type: "submit" } },
-          [_vm._v("Create")]
-        )
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -41064,7 +41076,7 @@ var render = function() {
                   [_vm._v("05")]
                 ),
                 _vm._v(" "),
-                _vm.rateBtn
+                !_vm.loading
                   ? _c(
                       "button",
                       {
@@ -41082,7 +41094,14 @@ var render = function() {
                         )
                       ]
                     )
-                  : _vm._e()
+                  : _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-primary",
+                        attrs: { type: "button", disabled: "" }
+                      },
+                      [_vm._v("Rating...")]
+                    )
               ])
             ]),
             _vm._v(" "),
