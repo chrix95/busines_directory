@@ -2,6 +2,7 @@
 A classic business directory service 
 
 ## Project setup
+Ensure to clone the project into your local directory
 1. Import the DB file `initsng.sql`
 2. Duplicate the `.env.example` file and rename to `.env`
 3. Set your DB parameter in the in the `.env` file
@@ -14,7 +15,8 @@ DB_PASSWORD=DB_DATABASE_PASSWORD
 ```
 php artisan key:generate
 ```
-5. Default Admin login credential:
+5. Run `composer install` to download the laravel dependencies, and also run `npm install` to download the vue dependencies.
+6. Default Admin login credential:
 ```
 Username: engchris95@gmail.com
 Password: root1234
